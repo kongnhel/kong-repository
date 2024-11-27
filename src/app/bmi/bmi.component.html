@@ -1,0 +1,98 @@
+<div class="main-content-1">
+    <h2>គណនាសន្ទស្សន៍ម៉ាសរាងកាយ</h2>
+    <div class="main-content">
+        <!-- BMI Calculator Section -->
+        <div class="bmi-calculator">
+            <form (ngSubmit)="calculateBMI()" #bmiForm="ngForm">
+                <div class="form-group">
+                    <label for="weight">សូមបញ្ចូលទម្ងន់​ របស់អ្នក (គីឡូក្រាម/Kg):</label>
+                    <input type="number" id="weight" name="weight" [(ngModel)]="weight" required min="1"
+                        class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="height">សូមបញ្ចូលកម្ពស់​ របស់អ្នក (សង់ទីម៉ែត្រ/cm):</label>
+                    <input type="number" id="height" name="height" [(ngModel)]="height" required min="1"
+                        class="form-control">
+                </div>
+                <div class="button-group">
+                    <button type="submit" [disabled]="!bmiForm.form.valid">គណនា</button>
+                    <button type="button" (click)="resetForm()">លុប</button>
+                </div>
+            </form>
+            <div class="result" *ngIf="bmiResult > 0">
+                <h3>លទ្ធផល:</h3>
+                <p>សន្ទស្សន៍ម៉ាសរាងកាយ​របស់អ្នក: <strong>{{ bmiResult | number:'1.1-1' }}</strong> kg/m<sup>2</sup></p>
+                <p>ស្ថានភាពរាងកាយ: <strong class="bmi-category">{{ bmiCategory }}</strong></p>
+
+                <p *ngIf="bmiResult < 18.5">Bmiត្រូវការ៖ <strong class="bmi-category">{{ bmiNeed | number:'1.1-1'
+                        }}</strong> kg/m<sup>2</sup></p>
+                <p *ngIf="bmiResult > 25">Bmiលើស៖ <strong class="bmi-category">{{ bmiOver | number:'1.1-1' }}</strong>
+                    kg/m<sup>2</sup></p>
+
+                <p>អ្នកត្រូវ៖ <strong class="bmi-category">{{ att }}</strong></p>
+            </div>
+
+        </div>
+        <!-- Additional Information Section -->
+        <div class="document">
+            <div class="bmi-using">
+                <h3>របៀបគណនា</h3>
+                <ul class="bmi-using-data">
+                    <li>បញ្ចូលទម្ងន់របស់អ្នកជាគីឡូក្រាម(kg)</li>
+                    <li>បញ្ចូលកម្ពស់របស់អ្នកជាសង់ទីម៉ែត្រ(Cm)</li>
+                    <li>ចុចប៊ូតុង "គណនា" ដើម្បីគណនា</li>
+                    <li>ចុចប៊ូតុងក្រហម (លុប) ដើម្បីលុប</li>
+                    <li>លទ្ធផលនឹងបង្ហាញនៅខាងក្រោម</li>
+                    <h3>ខ្នាត</h3>
+                    <li>1 m​ = 39.3701​ inch</li>
+                    <li>1 kg​ = 2.20462 pound</li>
+                </ul>
+            </div>
+            <div class="bmi-table-container">
+                <h3>តារាង BMI មនុស្សទូទៅ</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ចំណាត់ថ្នាក់</th>
+                            <th>BMI range - kg/m²</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ស្រាលខ្លាំង</td>
+                            <td>&lt; 16</td>
+                        </tr>
+                        <tr>
+                            <td>ស្រាលបន្តិច</td>
+                            <td>16 - 17</td>
+                        </tr>
+                        <tr>
+                            <td>ស្រាល</td>
+                            <td>17 - 18.5</td>
+                        </tr>
+                        <tr>
+                            <td>ធម្មតា</td>
+                            <td>18.5 - 25</td>
+                        </tr>
+                        <tr>
+                            <td>ធាត់បន្តិច</td>
+                            <td>25 - 30</td>
+                        </tr>
+                        <tr>
+                            <td>ធាត់ថ្នាក់ ១</td>
+                            <td>30 - 35</td>
+                        </tr>
+                        <tr>
+                            <td>ធាត់ថ្នាក់ ២</td>
+                            <td>35 - 40</td>
+                        </tr>
+                        <tr>
+                            <td>ធាត់ថ្នាក់ ៣</td>
+                            <td>&gt; 40</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
